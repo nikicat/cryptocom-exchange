@@ -12,12 +12,12 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
-    "aiolimiter>=1.0.0,<2",
-    "async-timeout>=4.0.2,<5",
-    "cached-property>=1.5.2,<2",
-    "httpx>=0.28,<0.29",
-    "websockets>=13,<14",
-    "pyyaml>=6.0.2,<7",
+    "aiolimiter>=1.2.1",
+    "async-timeout>=5.0.1",
+    "cached-property>=2.0.1",
+    "httpx>=0.28.1",
+    "pyyaml>=6.0.2",
+    "websockets>=15.0.1",
 ]
 
 [dependency-groups]

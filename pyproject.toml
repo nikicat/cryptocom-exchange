@@ -1,39 +1,51 @@
-[tool.poetry]
-authors = ["Morty Space <morty.space@gmail.com>"]
-description = "Python 3.9+ async library for crypto.com/exchange API using httpx and websockets"
-license = "MIT"
+[project]
 name = "cryptocom-exchange"
-packages = [
-  {include = "cryptocom", from = "src"},
-]
 version = "0.15.0"
+description = "Python 3.9+ async library for crypto.com/exchange API using httpx and websockets"
+authors = [{ name = "Morty Space", email = "morty.space@gmail.com" }]
+requires-python = "~=3.9"
 readme = "README.md"
+license = "MIT"
 classifiers = [
-  "Operating System :: OS Independent",
-  "Programming Language :: Python :: Implementation :: CPython",
-  "Topic :: Software Development :: Libraries :: Python Modules",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "aiolimiter>=1.0.0,<2",
+    "async-timeout>=4.0.2,<5",
+    "cached-property>=1.5.2,<2",
+    "httpx>=0.28,<0.29",
+    "websockets>=13,<14",
+    "pyyaml>=6.0.2,<7",
 ]
 
-[tool.poetry.dependencies]
-aiolimiter = "^1.0.0"
-async-timeout = "^4.0.2"
-cached-property = "^1.5.2"
-httpx = "^0.27.0"
-python = "^3.9"
-websockets = "^10.3"
-pyyaml = "^6.0.2"
+[dependency-groups]
+dev = [
+    "flake8==3.9",
+    "pytest>=7.1.2,<8",
+    "pytest-asyncio>=0.18.3,<0.19",
+    "pytest-cov>=3.0.0,<4",
+    "pytest-doctestplus>=0.12.0,<0.13",
+    "pre-commit>=2.18.1,<3",
+    "Sphinx>=7.0.0,<8",
+    "sphinx-rtd-theme>=1.0.0,<2",
+    "mypy>=0.950,<0.951",
+    "importlib-metadata>=4.11.3,<5",
+]
 
-[tool.poetry.dev-dependencies]
-flake8 = "3.9"
-pytest = "^7.1.2"
-pytest-asyncio = "^0.18.3"
-pytest-cov = "^3.0.0"
-pytest-doctestplus = "^0.12.0"
-pre-commit = "^2.18.1"
-Sphinx = "^7.0.0"
-sphinx-rtd-theme = "^1.0.0"
-mypy = "^0.950"
-importlib-metadata = "^4.11.3"
+[tool.hatch.build.targets.sdist]
+include = ["src/cryptocom"]
+
+[tool.hatch.build.targets.wheel]
+include = ["src/cryptocom"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src/cryptocom" = "cryptocom"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.ruff]
 exclude = [
@@ -61,10 +73,6 @@ exclude = [
 line-length = 80
 target-version = "py311"
 unsafe-fixes = true
-
-[build-system]
-build-backend = "poetry.core.masonry.api"
-requires = ["poetry-core>=1.0.0"]
 
 [tool.semantic_release]
 version_toml = [
